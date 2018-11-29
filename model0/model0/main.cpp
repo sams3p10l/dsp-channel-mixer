@@ -10,24 +10,56 @@
 
 double sampleBuffer[MAX_NUM_CHANNEL][BLOCK_SIZE];
 
-double x_historyL[] = { 0, 0 };	
-double y_historyL[] = { 0, 0 };
+double x_history0[] = { 0, 0 };	//LEFT
+double y_history0[] = { 0, 0 };
 
-double x_historyR[] = { 0, 0 };	
-double y_historyR[] = { 0, 0 };
+double x_history1[] = { 0, 0 };	//CENTER
+double y_history1[] = { 0, 0 };
 
-double x_historyLS[] = { 0, 0 };	
-double y_historyLS[] = { 0, 0 };
+double x_history2[] = { 0, 0 };	//LEFT SURROUND
+double y_history2[] = { 0, 0 };
 
-double x_historyRS[] = { 0, 0 };	
-double y_historyRS[] = { 0, 0 };
+double x_history3[] = { 0, 0 };	//RIGHT SURROUND
+double y_history3[] = { 0, 0 };
 
-double x_historyC[] = { 0, 0 };	
-double y_historyC[] = { 0, 0 };
+double x_history4[] = { 0, 0 };	//RIGHT
+double y_history4[] = { 0, 0 };
 
-//TODO: LFS history
+double x_history5[] = { 0, 0 }; //BASS
+double y_history5[] = { 0, 0 };
+
+double LPF_18KHz[6] = {
+	0.5690337746913825,
+	1.138067549382765,
+	0.5690337746913825,
+	1.0,
+	0.9428060277021068,
+	0.3333290710634233
+};
+
+double HPF_800Hz[6] = {
+	0.9286231649207966,
+	-1.857246329841593,
+	0.9286231649207966,
+	1.0,
+	-1.8521452628914687,
+	0.8623473967917175
+};
+
+double BPF_1200_14000Hz[6] =  //CHECK
+{
+	0.3722675327550114,
+	0,
+	-0.3722675327550114,
+	1.0,
+	-0.6837752104158255,
+	0.25546493448997737
+};
+
+int mode = 0; //default
 
 double second_order_IIR(double input, double* coefficients, double* x_history, double* y_history);
+void processing();
 
 int main(int argc, char* argv[])
 {
@@ -95,7 +127,7 @@ int main(int argc, char* argv[])
 				}
 			}
 
-			//processing();
+			processing();
 
 			for(int j=0; j<BLOCK_SIZE; j++)
 			{
@@ -149,12 +181,50 @@ double second_order_IIR(double input, double* coefficients, double* x_history, d
 	return output;
 }
 
+/*
+	L = 0
+	C = 1
+	R = 2
+	Ls = 3
+	Rs = 4
+	LFE = 5
+*/
+
 void processing()
 {
 	int i;
+	double tempL, tempR;
 
 	for (i = 0; i < BLOCK_SIZE; i++)
 	{
+		/* variables for multiplier storing */
+		tempL = sampleBuffer[0][i] * MINUS_FOUR_DB;
+		tempR = sampleBuffer[1][i] * MINUS_FOUR_DB;
 
+		if (mode == 0)
+		{
+			/* LEFT CHANNEL */
+			sampleBuffer[0][i] = tempL; // L
+			sampleBuffer[1][i] = second_order_IIR(tempL, LPF_18KHz, x_history1, y_history1); // C
+			sampleBuffer[3][i] = second_order_IIR(tempL, HPF_800Hz, x_history3, y_history3); // Ls
+			sampleBuffer[4][i] = second_order_IIR(tempL, BPF_1200_14000Hz, x_history4, y_history4); //Rs
+
+			/* RIGHT CHANNEL */
+			
+			sampleBuffer[2][i] = second_order_IIR(tempR, BPF_1200_14000Hz, x_history2, y_history2); //R
+			sampleBuffer[5][i] = second_order_IIR(tempR, HPF_800Hz, x_history5, y_history5); //LFE
+		}
+		else if (mode == 1)
+		{
+			/* LEFT CHANNEL */
+			sampleBuffer[0][i] = second_order_IIR(tempL, LPF_18KHz, x_history0, y_history0); //L
+			sampleBuffer[1][i] = second_order_IIR(tempL, HPF_800Hz, x_history0, y_history1); //C
+			sampleBuffer[3][i] = second_order_IIR(tempL, BPF_1200_14000Hz, x_history3, y_history3); //Ls
+
+			/* RIGHT CHANNEL */
+			sampleBuffer[4][i] = second_order_IIR(tempR, BPF_1200_14000Hz, x_history4, y_history4); //Rs
+			sampleBuffer[2][i] = second_order_IIR(tempR, HPF_800Hz, x_history2, y_history2); //R
+			sampleBuffer[5][i] = second_order_IIR(tempR, LPF_18KHz, x_history5, y_history5); //LFE
+		}
 	}
 }
