@@ -56,7 +56,19 @@ double BPF_1200_14000Hz[6] =  //CHECK
 	0.25546493448997737
 };
 
-int mode = 0; //default
+double BPF_1200_14000Hz_Bokan[6] = 
+{
+	0.34656122162555841000,
+	0.00000000000000000000,
+	-0.69312244325111683000,
+	1.00000000000000000000,
+	-1.52799527919044700000,
+	0.57389076313775655000
+};
+
+/* DEFAULTS */
+int mode = 1; //1 = off, 0 = on
+int gain = -3;
 
 double second_order_IIR(double input, double* coefficients, double* x_history, double* y_history);
 void processing();
@@ -75,10 +87,31 @@ int main(int argc, char* argv[])
 
 	// Open input and output wav files
 	//-------------------------------------------------
-	strcpy(WavInputName,argv[1]);
-	wav_in = OpenWavFileForRead (WavInputName,"rb");
-	strcpy(WavOutputName,argv[2]);
-	wav_out = OpenWavFileForRead (WavOutputName,"wb");
+	if (argc > 2)
+	{
+		strcpy(WavInputName, argv[1]);
+		wav_in = OpenWavFileForRead(WavInputName, "rb");
+		strcpy(WavOutputName, argv[2]);
+		wav_out = OpenWavFileForRead(WavOutputName, "wb");
+
+		if (argc > 3)
+		{
+			if (((mode = atoi(argv[3])) != 0) && ((mode = atoi(argv[3])) != 1))
+			{
+				printf("Invalid mode input, choose 0 or 1\n");
+				return -1;
+			}
+
+			if (argc > 4)
+			{
+				if (((gain = atoi(argv[4])) > 0))
+				{
+					printf("Invalid gain input, must be negative\n");
+					return -1;
+				}
+			}
+		}	
+	}
 	//-------------------------------------------------
 
 	// Read input wav header
@@ -198,10 +231,10 @@ void processing()
 	for (i = 0; i < BLOCK_SIZE; i++)
 	{
 		/* variables for multiplier storing */
-		tempL = sampleBuffer[0][i] * MINUS_FOUR_DB;
-		tempR = sampleBuffer[1][i] * MINUS_FOUR_DB;
+		tempL = sampleBuffer[0][i] * gain;
+		tempR = sampleBuffer[1][i] * gain;
 
-		if (mode == 0)
+		if (mode == 1)
 		{
 			/* LEFT CHANNEL */
 			sampleBuffer[0][i] = tempL; // L
@@ -214,7 +247,7 @@ void processing()
 			sampleBuffer[2][i] = second_order_IIR(tempR, BPF_1200_14000Hz, x_history2, y_history2); //R
 			sampleBuffer[5][i] = second_order_IIR(tempR, HPF_800Hz, x_history5, y_history5); //LFE
 		}
-		else if (mode == 1)
+		else if (mode == 0)
 		{
 			/* LEFT CHANNEL */
 			sampleBuffer[0][i] = second_order_IIR(tempL, LPF_18KHz, x_history0, y_history0); //L
