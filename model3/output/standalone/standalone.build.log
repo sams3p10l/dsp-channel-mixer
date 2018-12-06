@@ -1,0 +1,207 @@
+============= BUILDING STARTED ============
+  Project: model3
+===========================================
+Compiling .c files...
+D:/dsp-channel-mixer/model3/src/main.c
+C:/CirrusDSP/bin/ccc2 D:/dsp-channel-mixer/model3/src/main.c
+ -S
+ -ruf
+ -fcse
+ -fprc
+ -fcompact
+ -funsafe-loop-optimizations
+ -g
+ -edi
+ -emit-hints
+ -ira
+ -fconst-pool=X
+ -fno0init
+ -femit-asm-struct
+ -cdl
+ -D_TOOLS_VERSION_=0x0701
+ -D_SLOT_=0
+ -D_OVLY_=standalone
+ -D_OVLY_REVISION_=020000
+ -D_VERSION_=00
+ -D_DSP_=a
+ -D_COMMON_INC_PATH_=C:/CirrusDSP/crystal32/common/inc/
+ -D_TARGET_FAMILY_=crystal32
+ -D_MUI_VERSION_=020000
+ -IC:/CirrusDSP/include/
+ -IC:/CirrusDSP/include/dsplib/
+ -ID:/dsp-channel-mixer/model3/inc/
+ -oD:/dsp-channel-mixer/model3/output/standalone/src/main.s
+ -D_LOCAL_SRC_PATH_=src/
+ -D_LOCAL_INC_PATH_=inc/
+ -D_ROUTER_INC_PATH_=rom_inc/
+     [exec] "C:/CirrusDSP/include/stdio.h", line 8: warning #1108: #warning directive: Functionality of stdio.h header file is not fully supported
+     [exec]   #warning Functionality of stdio.h header file is not fully supported
+     [exec]    ^
+     [exec] 
+     [exec] "C:/CirrusDSP/include/string.h", line 8: warning #1108: #warning directive: Functionality of string.h header file is not fully supported
+     [exec]   #warning Functionality of string.h header file is not fully supported
+     [exec]    ^
+     [exec] 
+     [exec] "C:/CirrusDSP/include/string.h", line 13: warning #303: typedef name has already beenWARNING: '-unsafe-loop-optimization' is ignored when '-g' option is used!
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 76: warning #4007: Pointer to unspecified memory zone.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 78: warning #4007: Pointer to unspecified memory zone.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 79: warning #4007: Pointer to unspecified memory zone.
+     [exec] 
+     [exec]  declared (with same type)
+     [exec]   typedef unsigned int size_t;
+     [exec]                        ^
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 94: info: Hardware loop is not emitted due to: 
+     [exec] Loop index is being updated in a conditional statement.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 92: info: Hardware loop is not emitted due to: 
+     [exec] Loop index is being updated in a nested loop.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 143: info: Hardware loop is not emitted due to: 
+     [exec] Upper bound and initial loop index value are not constant.
+     [exec] Make them constant or try using -funsafe-loop-optimizations option.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 154: info: Hardware loop is not emitted due to: 
+     [exec] Upper bound and initial loop index value are not constant.
+     [exec] Make them constant or try using -funsafe-loop-optimizations option.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 139: info: Hardware loop is not emitted due to: 
+     [exec] Upper bound and initial loop index value are not constant.
+     [exec] Make them constant or try using -funsafe-loop-optimizations option.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 195: info: SRS is used at this line.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 214: info: SRS is used at this line.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 215: info: SRS is used at this line.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 217: info: SRS is used at this line.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 218: info: SRS is used at this line.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 219: info: SRS is used at this line.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 220: info: SRS is used at this line.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 221: info: SRS is used at this line.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 222: info: SRS is used at this line.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 227: info: SRS is used at this line.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 228: info: SRS is used at this line.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 234: info: SRS is used at this line.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 235: info: SRS is used at this line.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 236: info: SRS is used at this line.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 239: info: SRS is used at this line.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 240: info: SRS is used at this line.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 245: info: SRS is used at this line.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 246: info: SRS is used at this line.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 247: info: SRS is used at this line.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 250: info: SRS is used at this line.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 251: info: SRS is used at this line.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 252: info: SRS is used at this line.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 96: info: SRS is used at this line.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 139: info: Call to runtime function __div. Look at the separate document for information how to avoid this call.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 146: info: SRS is used at this line.
+     [exec] 
+     [exec] "D:/dsp-channel-mixer/model3/src/main.c", line 156: info: SRS is used at this line.
+     [exec] 
+     [exec] FRONT END TIME: 1 seconds
+     [exec] BACK  END TIME: 0 seconds
+     [exec] 
+Assembling .a and .s files...
+D:/dsp-channel-mixer/model3/output/standalone/src/main.s
+C:/CirrusDSP/bin/casm D:/dsp-channel-mixer/model3/output/standalone/src/main.s
+ --debug
+ -c
+ -s
+ -e
+ -D_TOOLS_VERSION_=0x0701
+ -D_SLOT_=0
+ -D_OVLY_=standalone
+ -D_OVLY_REVISION_=020000
+ -D_VERSION_=00
+ -D_DSP_=a
+ -D_COMMON_INC_PATH_=C:/CirrusDSP/crystal32/common/inc/
+ -D_TARGET_FAMILY_=crystal32
+ -D_MUI_VERSION_=020000
+ -IC:/CirrusDSP/include/
+ -IC:/CirrusDSP/include/dsplib/
+ -ID:/dsp-channel-mixer/model3/inc/
+ -lD:/dsp-channel-mixer/model3/output/standalone/src/main.lst
+ -oD:/dsp-channel-mixer/model3/output/standalone/src/main.O
+ -iC:/CirrusDSP/crystal32/common/inc/base.h
+ -D_LOCAL_SRC_PATH_=src/
+ -D_LOCAL_INC_PATH_=inc/
+ -D_ROUTER_INC_PATH_=rom_inc/
+Linking files...
+C:/CirrusDSP/bin/clink
+ -oD:/dsp-channel-mixer/model3/output/standalone/model3.img
+ -fC:/CirrusDSP/crystal32/memory_maps/v00.mem.xml
+ --output_type=RAM
+ --overlay_type=standalone
+ -lC:/CirrusDSP/lib/
+ -lC:/CirrusDSP/lib/dsplib
+ -lC:/CirrusDSP/lib/dsplib/crystal32/
+D:/dsp-channel-mixer/model3/output/standalone/src/main.O
+     [exec] Warning #507: Unknown class: Y_OS_CC_GLOBALS
+     [exec]             for the segment: CC_HEAPSTEAL_VALUES
+     [exec]             from the module: C:\CirrusDSP\lib\dsplib\crystal32\cl_heapsteal.O
+     [exec] 
+     [exec] List of linked library's modules:
+     [exec] C:\CirrusDSP\lib\crt0.o
+     [exec] C:\CirrusDSP\lib\div.o
+     [exec] C:\CirrusDSP\lib\exit.o
+     [exec] C:\CirrusDSP\lib\simulator_stack.o
+     [exec] C:\CirrusDSP\lib\strcpy_x2x.o
+     [exec] C:\CirrusDSP\lib\udiv.o
+     [exec] C:\CirrusDSP\lib\dsplib\crystal32\cl_wavread_bits_per_sample.o
+     [exec] C:\CirrusDSP\lib\dsplib\crystal32\cl_wavread_close.o
+     [exec] C:\CirrusDSP\lib\dsplib\crystal32\cl_wavread_frame_rate.o
+     [exec] C:\CirrusDSP\lib\dsplib\crystal32\cl_wavread_getnchannels.o
+     [exec] C:\CirrusDSP\lib\dsplib\crystal32\cl_wavread_number_of_frames.o
+     [exec] C:\Cir
+     [exec] rusDSP\lib\dsplib\crystal32\cl_wavread_open.o
+     [exec] C:\CirrusDSP\lib\dsplib\crystal32\cl_wavread_recvsample.o
+     [exec] C:\CirrusDSP\lib\dsplib\crystal32\cl_wavwrite_close.o
+     [exec] C:\CirrusDSP\lib\dsplib\crystal32\cl_wavwrite_open.o
+     [exec] C:\CirrusDSP\lib\dsplib\crystal32\cl_wavwrite_sendsample.o
+     [exec] C:\CirrusDSP\lib\dsplib\crystal32\printf.o
+Creating .uld file...
+C:/CirrusDSP/bin/lnkuld
+ -ja
+ D:/dsp-channel-mixer/model3/output/standalone/model3.img
+ D:/dsp-channel-mixer/model3/output/standalone/model3.uld
+     [exec] 
+     [exec] Reading file: D:/dsp-channel-mixer/model3/output/standalone/model3.img ...
+     [exec] 	Processed 761 line(s).
+     [exec] 
+     [exec] Writing output to file: D:/dsp-channel-mixer/model3/output/standalone/model3.uld ...
+     [exec] 
+     [exec] Done!
+     [exec] 
+     [exec] Writing output to file: D:/dsp-channel-mixer/model3/output/standalone/model3.uldb ...
+     [exec] 
+     [exec] Done!
+     [exec] 
+     [exec] Writing output to file: D:/dsp-channel-mixer/model3/output/standalone/model3.uldc ...
+
+BUILD SUCCESSFUL
+Total time: 2 seconds

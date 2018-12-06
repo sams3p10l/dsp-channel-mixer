@@ -1,0 +1,14 @@
+﻿  WAVheader.cpp
+  stdfix_emu.cpp
+d:\dsp-channel-mixer\model2\model2\stdfix_emu.cpp(56): warning C4309: 'argument': truncation of constant value
+d:\dsp-channel-mixer\model2\model2\stdfix_emu.cpp(310): warning C4309: 'argument': truncation of constant value
+d:\dsp-channel-mixer\model2\model2\stdfix_emu.cpp(518): warning C4244: '=': conversion from 'unsigned long' to 'char', possible loss of data
+  main.cpp
+  fixed_point_math.cpp
+d:\dsp-channel-mixer\model2\model2\fixed_point_math.cpp(455): warning C4309: '=': truncation of constant value
+d:\dsp-channel-mixer\model2\model2\fixed_point_math.cpp(517): warning C4244: '=': conversion from 'unsigned long' to 'coyote_math::accumulator::guard_t', possible loss of data
+d:\dsp-channel-mixer\model2\model2\fixed_point_math.cpp(527): warning C4309: '=': truncation of constant value
+d:\dsp-channel-mixer\model2\model2\fixed_point_math.cpp(557): warning C4309: '=': truncation of constant value
+  Generating Code...
+  model2.vcxproj -> D:\dsp-channel-mixer\model2\x64\Debug\model2.exe
+  model2.vcxproj -> D:\dsp-channel-mixer\model2\x64\Debug\model2.pdb (Partial PDB)

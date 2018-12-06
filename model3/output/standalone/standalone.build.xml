@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<project basedir="D:/dsp-channel-mixer/model3" name="model3">
+	<target description="Compiling .c files..." name="ccc">
+		<delete file="D:/dsp-channel-mixer/model3/output/standalone/src/main.O"/>
+		<delete file="D:/dsp-channel-mixer/model3/output/standalone/src/main.s"/>
+		<exec executable="C:/CirrusDSP/bin/ccc2" failonerror="true" resultProperty="cccResult0">
+			<env key="PATH" path="C:/CirrusDSP/bin/:${env.PATH}"/>
+			<arg value="D:/dsp-channel-mixer/model3/src/main.c"/>
+			<arg value="-S"/>
+			<arg value="-ruf"/>
+			<arg value="-fcse"/>
+			<arg value="-fprc"/>
+			<arg value="-fcompact"/>
+			<arg value="-funsafe-loop-optimizations"/>
+			<arg value="-g"/>
+			<arg value="-edi"/>
+			<arg value="-emit-hints"/>
+			<arg value="-ira"/>
+			<arg value="-fconst-pool=X"/>
+			<arg value="-fno0init"/>
+			<arg value="-femit-asm-struct"/>
+			<arg value="-cdl"/>
+			<arg value="-D_TOOLS_VERSION_=0x0701"/>
+			<arg value="-D_SLOT_=0"/>
+			<arg value="-D_OVLY_=standalone"/>
+			<arg value="-D_OVLY_REVISION_=020000"/>
+			<arg value="-D_VERSION_=00"/>
+			<arg value="-D_DSP_=a"/>
+			<arg value="-D_COMMON_INC_PATH_=C:/CirrusDSP/crystal32/common/inc/"/>
+			<arg value="-D_TARGET_FAMILY_=crystal32"/>
+			<arg value="-D_MUI_VERSION_=020000"/>
+			<arg value="-IC:/CirrusDSP/include/"/>
+			<arg value="-IC:/CirrusDSP/include/dsplib/"/>
+			<arg value="-ID:/dsp-channel-mixer/model3/inc/"/>
+			<arg value="-oD:/dsp-channel-mixer/model3/output/standalone/src/main.s"/>
+			<arg value="-D_LOCAL_SRC_PATH_=src/"/>
+			<arg value="-D_LOCAL_INC_PATH_=inc/"/>
+			<arg value="-D_ROUTER_INC_PATH_=rom_inc/"/>
+		</exec>
+		<condition property="compileError">
+			<or>
+				<not>
+					<equals arg1="${cccResult0}" arg2="0"/>
+				</not>
+			</or>
+		</condition>
+	</target>
+	<target if="compileError" name="checkCompileErrors">
+		<fail message="Please check compiler errors."/>
+	</target>
+	<target description="Assembling .a and .s files..." name="casm">
+		<delete file="D:/dsp-channel-mixer/model3/output/standalone/src/main.O"/>
+		<exec executable="C:/CirrusDSP/bin/casm" failonerror="true" resultProperty="casmResult0">
+			<arg value="D:/dsp-channel-mixer/model3/output/standalone/src/main.s"/>
+			<arg value="--debug"/>
+			<arg value="-c"/>
+			<arg value="-s"/>
+			<arg value="-e"/>
+			<arg value="-D_TOOLS_VERSION_=0x0701"/>
+			<arg value="-D_SLOT_=0"/>
+			<arg value="-D_OVLY_=standalone"/>
+			<arg value="-D_OVLY_REVISION_=020000"/>
+			<arg value="-D_VERSION_=00"/>
+			<arg value="-D_DSP_=a"/>
+			<arg value="-D_COMMON_INC_PATH_=C:/CirrusDSP/crystal32/common/inc/"/>
+			<arg value="-D_TARGET_FAMILY_=crystal32"/>
+			<arg value="-D_MUI_VERSION_=020000"/>
+			<arg value="-IC:/CirrusDSP/include/"/>
+			<arg value="-IC:/CirrusDSP/include/dsplib/"/>
+			<arg value="-ID:/dsp-channel-mixer/model3/inc/"/>
+			<arg value="-lD:/dsp-channel-mixer/model3/output/standalone/src/main.lst"/>
+			<arg value="-oD:/dsp-channel-mixer/model3/output/standalone/src/main.O"/>
+			<arg value="-iC:/CirrusDSP/crystal32/common/inc/base.h"/>
+			<arg value="-D_LOCAL_SRC_PATH_=src/"/>
+			<arg value="-D_LOCAL_INC_PATH_=inc/"/>
+			<arg value="-D_ROUTER_INC_PATH_=rom_inc/"/>
+		</exec>
+		<condition property="assemblyError">
+			<or>
+				<not>
+					<equals arg1="${casmResult0}" arg2="0"/>
+				</not>
+			</or>
+		</condition>
+	</target>
+	<target if="assemblyError" name="checkAssemblyErrors">
+		<fail message="Please check assembler errors."/>
+	</target>
+	<target description="Linking files..." name="clink">
+		<exec executable="C:/CirrusDSP/bin/clink" failonerror="true">
+			<arg value="-oD:/dsp-channel-mixer/model3/output/standalone/model3.img"/>
+			<arg value="-fC:/CirrusDSP/crystal32/memory_maps/v00.mem.xml"/>
+			<arg value="D:/dsp-channel-mixer/model3/output/standalone/src/main.O"/>
+			<arg value="--output_type=RAM"/>
+			<arg value="--overlay_type=standalone"/>
+			<arg value="-lC:/CirrusDSP/lib/"/>
+			<arg value="-lC:/CirrusDSP/lib/dsplib"/>
+			<arg value="-lC:/CirrusDSP/lib/dsplib/crystal32/"/>
+		</exec>
+	</target>
+	<target depends="clink" description="Creating .uld file..." name="lnkuld">
+		<exec executable="C:/CirrusDSP/bin/lnkuld" failonerror="true">
+			<arg value="-ja"/>
+			<arg value="D:/dsp-channel-mixer/model3/output/standalone/model3.img"/>
+			<arg value="D:/dsp-channel-mixer/model3/output/standalone/model3.uld"/>
+		</exec>
+	</target>
+</project>
