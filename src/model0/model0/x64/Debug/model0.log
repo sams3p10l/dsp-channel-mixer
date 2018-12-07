@@ -1,0 +1,6 @@
+﻿  WAVheader.cpp
+  main.cpp
+e:\dsp-channel-mixer\src\model0\model0\main.cpp(169): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  Generating Code...
+  model0.vcxproj -> E:\dsp-channel-mixer\src\model0\x64\Debug\model0.exe
+  model0.vcxproj -> E:\dsp-channel-mixer\src\model0\x64\Debug\model0.pdb (Full PDB)

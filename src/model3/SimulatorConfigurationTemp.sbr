@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CL_PROJECT>
+    <argv>E:\dsp-channel-mixer\TestStreams\titanic_horn.wav E:\dsp-channel-mixer\output\model3_out.wav</argv>
+    <FILE_IO_CFG block_type="Input" channels_per_line="2" delay="0" file_mode="PCM" index="0" justification="Left" sample_format="LittleEndian" sample_rate="48000" sample_size="32"/>
+    <FILE_IO_CFG block_type="Output" channels_per_line="2" delay="0" file_mode="PCM" index="0" justification="Left" sample_format="LittleEndian" sample_rate="48000" sample_size="32"/>
+    <MEMORY_CFG>
+        <ULD_FILE disk_path="E:/dsp-channel-mixer/model3/output/standalone/model3.uld"/>
+    </MEMORY_CFG>
+    <PROFILE_CFG enable="on"/>
+    <SCP_CFG load_delay="0"/>
+</CL_PROJECT>

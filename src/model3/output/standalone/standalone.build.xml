@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<project basedir="E:/dsp-channel-mixer/model3" name="model3">
+	<target description="Linking files..." name="clink">
+		<exec executable="C:/CirrusDSP/bin/clink" failonerror="true">
+			<arg value="-oE:/dsp-channel-mixer/model3/output/standalone/model3.img"/>
+			<arg value="-fC:/CirrusDSP/crystal32/memory_maps/v00.mem.xml"/>
+			<arg value="E:/dsp-channel-mixer/model3/output/standalone/src/main.O"/>
+			<arg value="--output_type=RAM"/>
+			<arg value="--overlay_type=standalone"/>
+			<arg value="-lC:/CirrusDSP/lib/"/>
+			<arg value="-lC:/CirrusDSP/lib/dsplib"/>
+			<arg value="-lC:/CirrusDSP/lib/dsplib/crystal32/"/>
+		</exec>
+	</target>
+	<target depends="clink" description="Creating .uld file..." name="lnkuld">
+		<exec executable="C:/CirrusDSP/bin/lnkuld" failonerror="true">
+			<arg value="-ja"/>
+			<arg value="E:/dsp-channel-mixer/model3/output/standalone/model3.img"/>
+			<arg value="E:/dsp-channel-mixer/model3/output/standalone/model3.uld"/>
+		</exec>
+	</target>
+</project>

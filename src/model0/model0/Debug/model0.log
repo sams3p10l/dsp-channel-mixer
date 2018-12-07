@@ -1,0 +1,4 @@
+﻿  main.cpp
+d:\ra191\dsp-channel-mixer\model0\model0\main.cpp(136): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  model0.vcxproj -> D:\ra191\dsp-channel-mixer\model0\Debug\model0.exe
+  model0.vcxproj -> D:\ra191\dsp-channel-mixer\model0\Debug\model0.pdb (Full PDB)
