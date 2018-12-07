@@ -226,38 +226,39 @@ double second_order_IIR(double input, double* coefficients, double* x_history, d
 void processing()
 {
 	int i;
-	double tempL, tempR;
+    double tempL[MAX_NUM_CHANNEL][BLOCK_SIZE];
 
 	for (i = 0; i < BLOCK_SIZE; i++)
 	{
 		/* variables for multiplier storing */
-		tempL = sampleBuffer[0][i] * gain;
-		tempR = sampleBuffer[1][i] * gain;
+		sampleBuffer[0][i] = sampleBuffer[0][i] * gain;
+        tempL[0][i] = sampleBuffer[0][i];
+		sampleBuffer[1][i] = sampleBuffer[1][i] * gain;
 
 		if (mode == 1)
 		{
 			/* LEFT CHANNEL */
-			sampleBuffer[0][i] = tempL; // L
-			sampleBuffer[1][i] = second_order_IIR(tempL, LPF_18KHz, x_history1, y_history1); // C
-			sampleBuffer[3][i] = second_order_IIR(tempL, HPF_800Hz, x_history3, y_history3); // Ls
-			sampleBuffer[4][i] = second_order_IIR(tempL, BPF_1200_14000Hz, x_history4, y_history4); //Rs
+			//sampleBuffer[0][i] = tempL; // L
+			sampleBuffer[1][i] = second_order_IIR(sampleBuffer[0][i], LPF_18KHz, x_history1, y_history1); // C
+			sampleBuffer[3][i] = second_order_IIR(sampleBuffer[0][i], HPF_800Hz, x_history3, y_history3); // Ls
+			sampleBuffer[4][i] = second_order_IIR(sampleBuffer[0][i], BPF_1200_14000Hz, x_history4, y_history4); //Rs
 
 			/* RIGHT CHANNEL */
 			
-			sampleBuffer[2][i] = second_order_IIR(tempR, BPF_1200_14000Hz, x_history2, y_history2); //R
-			sampleBuffer[5][i] = second_order_IIR(tempR, HPF_800Hz, x_history5, y_history5); //LFE
+			sampleBuffer[2][i] = second_order_IIR(sampleBuffer[1][i], BPF_1200_14000Hz, x_history2, y_history2); //R
+			sampleBuffer[5][i] = second_order_IIR(sampleBuffer[1][i], HPF_800Hz, x_history5, y_history5); //LFE
 		}
 		else if (mode == 0)
 		{
 			/* LEFT CHANNEL */
-			sampleBuffer[0][i] = second_order_IIR(tempL, LPF_18KHz, x_history0, y_history0); //L
-			sampleBuffer[1][i] = second_order_IIR(tempL, HPF_800Hz, x_history0, y_history1); //C
-			sampleBuffer[3][i] = second_order_IIR(tempL, BPF_1200_14000Hz, x_history3, y_history3); //Ls
+			sampleBuffer[0][i] = second_order_IIR(tempL[0][i], LPF_18KHz, x_history0, y_history0); //L
+			sampleBuffer[1][i] = second_order_IIR(tempL[0][i], HPF_800Hz, x_history0, y_history1); //C
+			sampleBuffer[3][i] = second_order_IIR(tempL[0][i], BPF_1200_14000Hz, x_history3, y_history3); //Ls
 
 			/* RIGHT CHANNEL */
-			sampleBuffer[4][i] = second_order_IIR(tempR, BPF_1200_14000Hz, x_history4, y_history4); //Rs
-			sampleBuffer[2][i] = second_order_IIR(tempR, HPF_800Hz, x_history2, y_history2); //R
-			sampleBuffer[5][i] = second_order_IIR(tempR, LPF_18KHz, x_history5, y_history5); //LFE
+			sampleBuffer[4][i] = second_order_IIR(sampleBuffer[1][i], BPF_1200_14000Hz, x_history4, y_history4); //Rs
+			sampleBuffer[2][i] = second_order_IIR(sampleBuffer[1][i], HPF_800Hz, x_history2, y_history2); //R
+			sampleBuffer[5][i] = second_order_IIR(sampleBuffer[1][i], LPF_18KHz, x_history5, y_history5); //LFE
 		}
 	}
 }
